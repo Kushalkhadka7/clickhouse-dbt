@@ -52,6 +52,9 @@ Integrate dbt and clickhouse. Initializes a clickhouse server which holds two da
   # Load data to tables
 
   make load-data
+
+  # [NOTE]: This might not work, if it doesn't work we need to manually load data to postgres table.
+    In my case i had done using datagrip.
   ```
 
 - Load data to clickhouse raw database `raw_github_metrics`
