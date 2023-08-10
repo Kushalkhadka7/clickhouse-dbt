@@ -90,3 +90,5 @@ Integrate dbt and clickhouse. Initializes a clickhouse server which holds two da
 - Open `localhost:4000` and docs will be served
 
 ![Architecture Diagram](assets/assets2.png)
+
+**NOTE : All of the implementations is done in linux env**
