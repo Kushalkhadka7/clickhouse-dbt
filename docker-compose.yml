@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  clickhouse-server:
+    image: clickhouse/clickhouse-server:23.3-alpine
+    container_name: clickhouse-server
+    env_file:
+      - .env_clickhouse
+    ports:
+      - "8123:8123"
+      - "9000:9000"
+    volumes:
+      - data:/var/lib/clickhouse
+      - config:/etc/clickhouse-server
+      - ./clickhouse:/source
+    environment:
+      - CLICKHOUSE_CONFIG=/etc/clickhouse-server/config.xml
+    networks:
+      - default
+
+  postgres-server:
+    container_name: postgres-server
+    image: postgres:13.1
+    healthcheck:
+      test: ["CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root"]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    env_file:
+      - .env_postgres
+    volumes:
+      - ./postgres:/source
+      - ./postgres/db:/docker-entrypoint-initdb.d/
+    ports:
+      - 5432:5432
+
+volumes:
+  data:
+  config:

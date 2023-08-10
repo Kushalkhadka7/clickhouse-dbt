@@ -1,0 +1,1 @@
+COPY commits FROM '/source/data/commits.tsv' WITH (FORMAT csv);
