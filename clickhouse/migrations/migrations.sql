@@ -9,7 +9,7 @@ CREATE DATABASE raw_github_metrics;
 -- 
 CREATE TABLE IF NOT EXISTS raw_github_metrics.file_changes
 (
-    change_type Enum('Add' = 1, 'Delete' = 2, 'Modify' = 3, 'Rename' = 4, 'Copy' = 5, 'Type' = 6),
+    change_type String,
     path LowCardinality(String),
     old_path LowCardinality(String),
     file_extension LowCardinality(String),
@@ -51,13 +51,13 @@ CREATE TABLE IF NOT EXISTS raw_github_metrics.line_changes
     hunk_context LowCardinality(String),
     line LowCardinality(String),
     indent UInt8,
-    line_type Enum('Empty' = 0, 'Comment' = 1, 'Punct' = 2, 'Code' = 3),
+    line_type String,
 
     prev_commit_hash String,
     prev_author LowCardinality(String),
     prev_time DateTime,
 
-    file_change_type Enum('Add' = 1, 'Delete' = 2, 'Modify' = 3, 'Rename' = 4, 'Copy' = 5, 'Type' = 6),
+    file_change_type String,
     path LowCardinality(String),
     old_path LowCardinality(String),
     file_extension LowCardinality(String),
